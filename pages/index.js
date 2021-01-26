@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import db from '../db.json'
+import Widget from '../src/components/Widget'
 
 const Title = styled.h1`
   font-size: 50px;
@@ -23,15 +24,33 @@ export const QuizContainer = styled.div`
   }
 `;
 
-const Widget = styled.div`
-  margin-top: 24px;
-  margin-bottom: 24px;
-  
-`;
+
 
 export default function Home() {
   return (
     <BackgroundImage>
+      <QuizContainer>
+        <Widget>
+          <Widget.Header>
+            <h1>The Legend of Zelda</h1>
+          </Widget.Header>
+          <Widget.Content>
+            
+            
+
+            <p>lorem ipsum dolor sit amet, consectetur adip</p>            
+          </Widget.Content>
+
+        </Widget>
+        <Widget>
+          <Widget.Content>
+          
+            <h1>The Legend of Zelda</h1>
+    
+            <p>lorem ipsum dolor sit amet, consectetur adip</p>
+          </Widget.Content>
+        </Widget>
+      </QuizContainer>
 
     </BackgroundImage>
   )
