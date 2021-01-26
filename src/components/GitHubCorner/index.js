@@ -43,5 +43,5 @@ export default function GitHubCorner({ projectUrl }) {
         </SVGWrapper>
       </a>
     </Wrapper>
-  )
+  );
 }
