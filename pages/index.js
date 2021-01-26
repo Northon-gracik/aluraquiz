@@ -1,9 +1,13 @@
-import styled from 'styled-components'
-import db from '../db.json'
-import Widget from '../src/components/Widget'
-import Footer from '../src/components/Footer'
-import GitHubCorner from '../src/components/GitHubCorner'
-import QuizBackground from '../src/components/QuizBackground'
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+
+import db from '../db.json';
+import Widget from '../src/components/Widget';
+import Footer from '../src/components/Footer';
+import GitHubCorner from '../src/components/GitHubCorner';
+import QuizBackground from '../src/components/QuizBackground';
 
 // const Title = styled.h1`
 //   font-size: 50px;
@@ -27,35 +31,47 @@ export const QuizContainer = styled.div`
   }
 `;
 
-
-
 export default function Home() {
+  const router = useRouter();
+  const [name, setName ] = useState('');
   return (
     <QuizBackground backgroundImage={db.bg}>
+      <Head>
+        <title>AluraQuiz</title>
+      </Head>
       <QuizContainer>
         <Widget>
           <Widget.Header>
             <h1>The Legend of Zelda</h1>
           </Widget.Header>
           <Widget.Content>
+            <form onSubmit={ event => {
+                event.preventDefault();
+                
+                router.push(`/quiz?name=${name}`)
+              }}>
+              <input 
+                onChange={ event => {
+                  setName(event.target.value)
+                }}
+                placeholder="Insira seu nome"  
+              />
+              <button type="submit" disabled={name.length === 0}>
+                Jogar {name}
+              </button>
+            </form>
             
-            
-
-            <p>lorem ipsum dolor sit amet, consectetur adip</p>            
           </Widget.Content>
-
         </Widget>
         <Widget>
           <Widget.Content>
-          
             <h1>The Legend of Zelda</h1>
-    
             <p>lorem ipsum dolor sit amet, consectetur adip</p>
           </Widget.Content>
         </Widget>
       </QuizContainer>
-      <GitHubCorner/>
-      <Footer/>
+      <GitHubCorner />
+      <Footer />
     </QuizBackground>
-  )
+  );
 }
