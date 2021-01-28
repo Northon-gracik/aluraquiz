@@ -65,6 +65,7 @@ function QuestionWidget({
   questionIndex,
   totalQuestions,
   onSubmit,
+  addResult,
 }) {
   const [ selectedAlternative, setSelectedAlternative ] = React.useState(undefined);
   const [ isQuestionSubmit, setIsQuestionSubmit ] = React.useState(false)
@@ -103,6 +104,7 @@ function QuestionWidget({
             infosDoEvento.preventDefault();
             setIsQuestionSubmit(true);
             setTimeout(() => {
+              addResult(isCorrect)
               setIsQuestionSubmit(false);
               onSubmit();
               setSelectedAlternative(undefined);
@@ -152,24 +154,31 @@ const screenStates = {
   RESULT: 'RESULT',
 };
 export default function QuizPage() {
-  const [screenState, setScreenState] = React.useState(screenStates.RESULT);
-  const [ results, setResults ] = React.useState([true, false, true])
+  const [screenState, setScreenState] = React.useState(screenStates.QUIZ);
+  const [ results, setResults ] = React.useState([])
   const totalQuestions = db.questions.length;
   const [currentQuestion, setCurrentQuestion] = React.useState(0);
   const questionIndex = currentQuestion;
   const question = db.questions[questionIndex];
 
+  function addResult(result) {
+    setResults([
+      ...results,
+      result
+    ]);
+  }
+
   // [React chama de: Efeitos || Effects]
   // React.useEffect
   // atualizado === willUpdate
   // morre === willUnmount
-  // React.useEffect(() => {
-  //   // fetch() ...
-  //   setTimeout(() => {
-  //     setScreenState(screenStates.QUIZ);
-  //   }, 1 * 1000);
-  // // nasce === didMount
-  // }, []);
+  React.useEffect(() => {
+    // fetch() ...
+    setTimeout(() => {
+      setScreenState(screenStates.QUIZ);
+    }, 1 * 1000);
+   // nasce === didMount
+  }, []);
 
   function handleSubmitQuiz() {
     const nextQuestion = questionIndex + 1;
@@ -190,6 +199,7 @@ export default function QuizPage() {
             questionIndex={questionIndex}
             totalQuestions={totalQuestions}
             onSubmit={handleSubmitQuiz}
+            addResult={addResult}
           />
         )}
 
