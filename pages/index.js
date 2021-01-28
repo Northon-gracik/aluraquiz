@@ -19,12 +19,14 @@ export default function Home() {
   return (
     <QuizBackground backgroundImage={db.bg}>
       <Head>
+      <link rel="shortcut icon" href="https://static.wikia.nocookie.net/gtawiki/images/9/91/Cluckin%27Bell-Logo.svg/revision/latest/top-crop/width/360/height/360?cb=20161019211750" type="image/x-icon"/>
         <title>AluraQuiz</title>
+        {/* <link rel="icon" type="image/png" href="https://static.wikia.nocookie.net/gtawiki/images/9/91/Cluckin%27Bell-Logo.svg/revision/latest/top-crop/width/360/height/360?cb=20161019211750"/> */}
       </Head>
       <QuizContainer>
         <Widget>
           <Widget.Header>
-            <h1>The Legend of Zelda</h1>
+            <h1>Grand Theft Auto</h1>
           </Widget.Header>
           <Widget.Content>
             <form onSubmit={ event => {
@@ -46,7 +48,7 @@ export default function Home() {
         </Widget>
         <Widget>
           <Widget.Content>
-            <h1>The Legend of Zelda</h1>
+            <h1>Grand Theft Auto</h1>
             <p>lorem ipsum dolor sit amet, consectetur adip</p>
           </Widget.Content>
         </Widget>
