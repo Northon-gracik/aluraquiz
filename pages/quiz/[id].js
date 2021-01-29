@@ -1,7 +1,6 @@
 
 
 export default function QuizDaGaleraPage (props) {
-    console.log(JSON.stringify(props))
     return(
         <div style={{color: 'blue'}}>
             {JSON.stringify(props)}
