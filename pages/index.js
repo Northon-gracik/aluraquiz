@@ -57,7 +57,7 @@ export default function Home() {
                                 .split('.')
                 return( 
                   <li key={link}>
-                    <Widget.Topic href={link}>
+                    <Widget.Topic href={router.push(`/quiz/${projectName}___${githubUser}`)}>
                       {` ${githubUser} - ${projectName} `}
                     </Widget.Topic>
                   </li>
